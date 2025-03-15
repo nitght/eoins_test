@@ -1,5 +1,6 @@
 sprites.onOverlap(SpriteKind.Food, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeScoreBy(100)
+    sprites.destroy(sprite)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     pause(4000)
@@ -189,6 +190,6 @@ game.onUpdateInterval(10000, function () {
         . . . 3 3 . . . . 3 3 . . 3 b . 
         . . 3 3 3 . . . 3 3 3 . . . . . 
         `, SpriteKind.Enemy)
-    mySprite2.follow(mySprite, 30)
-    mySprite2.setPosition(153, 63)
+    mySprite2.setPosition(randint(0, scene.screenWidth()), randint(0, scene.screenHeight()))
+    controller.moveSprite(mySprite2, randint(0, scene.screenWidth()), randint(0, scene.screenHeight()))
 })
