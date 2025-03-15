@@ -139,8 +139,8 @@ let mySprite = sprites.create(img`
     . . . b b b b b b b b b b b b . 
     . . . . b b b b b b b b b b . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite)
-game.onUpdateInterval(5000, function () {
+controller.moveSprite(mySprite, 70, 70)
+game.onUpdateInterval(10000, function () {
     mySprite2 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -159,4 +159,5 @@ game.onUpdateInterval(5000, function () {
         . . . 3 3 . . . . 3 3 . . 3 b . 
         . . 3 3 3 . . . 3 3 3 . . . . . 
         `, SpriteKind.Enemy)
+    mySprite2.follow(mySprite, 50)
 })
