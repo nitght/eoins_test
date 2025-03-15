@@ -1,4 +1,13 @@
+sprites.onOverlap(SpriteKind.Food, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeScoreBy(100)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    pause(4000)
+    info.changeLifeBy(-1)
+})
 let mySprite2: Sprite = null
+let mySprite3: Sprite = null
+info.setLife(9)
 scene.setBackgroundImage(img`
     3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
     3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
@@ -139,7 +148,28 @@ let mySprite = sprites.create(img`
     . . . b b b b b b b b b b b b . 
     . . . . b b b b b b b b b b . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite, 70, 70)
+controller.moveSprite(mySprite, 75, 75)
+game.onUpdateInterval(5000, function () {
+    mySprite3 = sprites.create(img`
+        . . 2 2 b b b b b . . . . . . . 
+        . 2 b 4 4 4 4 4 4 b . . . . . . 
+        2 2 4 4 4 4 d d 4 4 b . . . . . 
+        2 b 4 4 4 4 4 4 d 4 b . . . . . 
+        2 b 4 4 4 4 4 4 4 d 4 b . . . . 
+        2 b 4 4 4 4 4 4 4 4 4 b . . . . 
+        2 b 4 4 4 4 4 4 4 4 4 e . . . . 
+        2 2 b 4 4 4 4 4 4 4 b e . . . . 
+        . 2 b b b 4 4 4 b b b e . . . . 
+        . . e b b b b b b b e e . . . . 
+        . . . e e b 4 4 b e e e b . . . 
+        . . . . . e e e e e e b d b b . 
+        . . . . . . . . . . . b 1 1 1 b 
+        . . . . . . . . . . . c 1 d d b 
+        . . . . . . . . . . . c 1 b c . 
+        . . . . . . . . . . . . c c . . 
+        `, SpriteKind.Food)
+    mySprite3.setPosition(randint(100, 10), randint(100, 10))
+})
 game.onUpdateInterval(10000, function () {
     mySprite2 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -159,5 +189,6 @@ game.onUpdateInterval(10000, function () {
         . . . 3 3 . . . . 3 3 . . 3 b . 
         . . 3 3 3 . . . 3 3 3 . . . . . 
         `, SpriteKind.Enemy)
-    mySprite2.follow(mySprite, 50)
+    mySprite2.follow(mySprite, 30)
+    mySprite2.setPosition(153, 63)
 })
